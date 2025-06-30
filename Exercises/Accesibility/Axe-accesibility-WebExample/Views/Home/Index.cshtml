@@ -1,0 +1,59 @@
+﻿@{
+	ViewData["Title"] = "Ejemplo de uso de Axe";
+}
+
+<div class="text-center">
+	<!DOCTYPE html>
+	<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<div style="text-align: center;">
+			<h1>Verificador de Accesibilidad</h1>
+			<h3>Esta es una prueba de concepto usando axe-core para detectar problemas de accesibilidad</h3>
+			
+			<img src="/images/gatito.jpg">
+			<Br />
+			<Br />
+			<button>Hacer click para ejecutar verificación de accesibilidad</button>
+			<h2 style="display: none;">Errores de accesibilidad</h2>
+		</div>
+		<ul id="err"></ul>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/axe-core@4.9.1/axe.min.js"></script>
+		<script>
+			$(document).ready(() => {
+
+				$('button').on('click', function () {
+					$('#err').empty();
+
+					ExecuteAxe((results) => {
+						if (!results || !results.violations || results.violations.length === 0) {
+							$('#err').append('<li>No se encontraron errores de accesibilidad.</li>');
+							return;
+						}
+
+						$('h2').show();
+						results.violations.forEach(violation => {
+							$('#err').append(`<li>Impact:${violation.impact}  -  Description:${violation.description} - Help:${violation.help}</li>`)
+						});
+					});
+				});
+
+				function ExecuteAxe(callback) {
+					axe.run(function (err, results) {
+
+						if (err) {
+							console.log(err);
+							return;
+						}
+
+						callback(results);
+					})
+				}
+			});
+		</script>
+	</body>
+</html>
+</div>
