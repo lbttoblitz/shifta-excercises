@@ -1,0 +1,32 @@
+services:
+  api_1:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "6435:80"
+    volumes:
+      - datos:/app/data
+  api_2:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "6436:80"
+    volumes:
+      - datos:/app/data
+  api_3:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "6437:80"
+    volumes:
+      - datos:/app/data
+networks:
+    default:
+        external: true   
+        name: SharedVolumeNetwork
+volumes:
+  datos:
+

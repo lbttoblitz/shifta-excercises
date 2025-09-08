@@ -1,0 +1,20 @@
+services:
+  api_1:
+    image: ${DOCKER_REGISTRY-}api1
+    build:
+      context: ./Exercises/Shared-Volume/API_1
+      dockerfile: Dockerfile
+
+  api_2:
+    image: ${DOCKER_REGISTRY-}api2
+    build:
+      context: ./Exercises/Shared-Volume/API_2
+      dockerfile: Dockerfile
+
+
+  api_3:
+    image: ${DOCKER_REGISTRY-}api3
+    build:
+      context: ./Exercises/Shared-Volume/API_3
+      dockerfile: Dockerfile
+
