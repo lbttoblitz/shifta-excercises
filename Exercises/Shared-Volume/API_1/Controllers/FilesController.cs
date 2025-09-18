@@ -12,7 +12,7 @@ namespace API_1.Controllers
 		public async Task<IActionResult> Sender_1()
 		{
 			var path = Path.Combine("/app/data", $"shared-value.txt");
-			await System.IO.File.WriteAllTextAsync(path, $"enviando información a API_2....");
+			System.IO.File.AppendAllText(path, $"{Environment.NewLine} Enviando información a API_2....");
 			
 			using (var client = new HttpClient())
 			{

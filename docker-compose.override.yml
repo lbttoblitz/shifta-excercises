@@ -25,7 +25,7 @@ services:
       - datos:/app/data
 networks:
     default:
-        external: true   
+        external: false   
         name: SharedVolumeNetwork
 volumes:
   datos:
